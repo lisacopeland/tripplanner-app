@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TripService } from '@tripplanner/trips';
 
 @Component({
   selector: 'app-trip-list',
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TripListComponent implements OnInit {
 
-  constructor() { }
+  constructor(private tripService: TripService) { }
 
   ngOnInit(): void {
+    this.tripService.query({ account_id: 'lisa'}).subscribe((data) => {
+      console.log('got data', data);
+    });
   }
 
 }

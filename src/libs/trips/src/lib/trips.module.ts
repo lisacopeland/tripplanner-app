@@ -26,4 +26,4 @@ import { TripService } from './trips.service';
   entryComponents: [],
   providers: [TripService],
 })
-export class tripsModule { }
+export class TripsModule { }

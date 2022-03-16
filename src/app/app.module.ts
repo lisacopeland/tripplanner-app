@@ -8,6 +8,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { StoreModule } from '@ngrx/store';
 import { environment } from '../environments/environment';
 import { API_URL } from '@tripplanner/common';
+import { TripsModule } from '@tripplanner/trips';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { API_URL } from '@tripplanner/common';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    TripsModule,
     StoreModule.forRoot({}, {})
   ],
   providers: [{ provide: API_URL, useValue: environment.apiUrl }],

@@ -16,6 +16,7 @@ export class TripService {
 
   query(search: Partial<Trip>): Observable<Trip[]> {
     const searchObject: any = search;
+    console.log('going to url ', this.url, 'search: ', search)
     const params = new HttpParams({ fromObject: searchObject });
     return this.http.get<Trip[]>(this.url, { params });
   }
