@@ -6,9 +6,11 @@ import { AppComponent } from './app.component';
 import { TripListComponent } from './trip-list/trip-list.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { API_URL } from '@tripplanner/common';
 import { TripsModule } from '@tripplanner/trips';
+import { EffectsModule } from '@ngrx/effects';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,9 @@ import { TripsModule } from '@tripplanner/trips';
     AppRoutingModule,
     BrowserAnimationsModule,
     TripsModule,
-    StoreModule.forRoot({}, {})
+    StoreModule.forRoot({}, {}),
+    !environment.production ? StoreDevtoolsModule.instrument() : [],
+    EffectsModule.forRoot(),
   ],
   providers: [{ provide: API_URL, useValue: environment.apiUrl }],
   bootstrap: [AppComponent]

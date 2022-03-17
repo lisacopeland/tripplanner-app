@@ -6,7 +6,7 @@ export const loadTripsAction = createAction(
     props<{ search: Partial<Trip> }>()
 )
 export const setTripsAction = createAction(
-    'Trips: Load One',
+    'Trips: Set All',
     props<{ payload: Trip[] }>()
 )
 export const createTripAction = createAction(
