@@ -5,8 +5,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
-// import { tripsReducer } from './+state/trips.reducers';
-// import { tripsEffects } from './+state/trips.effects';
+import { tripsReducer } from './+state/trips.reducer';
+import { TripsEffects } from './+state/trips.effects';
 import { TripService } from './trips.service';
 
 @NgModule({
@@ -14,8 +14,8 @@ import { TripService } from './trips.service';
     CommonModule,
     HttpClientModule,
     ReactiveFormsModule,
-    // StoreModule.forFeature('trips', tripsReducer),
-    // EffectsModule.forFeature([tripsEffects]),
+    StoreModule.forFeature('trips', tripsReducer),
+    EffectsModule.forFeature([TripsEffects]),
   ],
   declarations: [
     // tripEditComponent,

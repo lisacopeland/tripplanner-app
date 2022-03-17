@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { TripService } from '@tripplanner/trips';
+import { select, Store } from '@ngrx/store';
+import { Trip, selectAllTrips } from '@tripplanner/trips';
+import { Observable, filter } from 'rxjs';
 
 @Component({
   selector: 'app-trip-list',
@@ -8,12 +10,15 @@ import { TripService } from '@tripplanner/trips';
 })
 export class TripListComponent implements OnInit {
 
-  constructor(private tripService: TripService) { }
+  constructor(private store: Store) { }
 
+  trips$: Observable<Trip[]> = this.store.pipe(
+    select(selectAllTrips),
+    filter((trips) => !!trips && trips.length > 0)
+  );
+  
   ngOnInit(): void {
-    this.tripService.query({ account_id: 'lisa'}).subscribe((data) => {
-      console.log('got data', data);
-    });
+    console.log('hi from lisa');
   }
 
 }

@@ -1,1 +1,7 @@
-<p>trip-list works!</p>
+<div>
+    <ng-container *ngFor="let trip of trips$ | async">
+        <div>
+          {{trip.admin_title}}
+        </div>
+    </ng-container>
+</div>
