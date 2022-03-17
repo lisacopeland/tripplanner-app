@@ -9,6 +9,10 @@ export const setTripsAction = createAction(
     'Trips: Set All',
     props<{ payload: Trip[] }>()
 )
+export const setCurrentTripAction = createAction(
+    'Trips: Set Current',
+    props<{ id: string }>()
+);
 export const createTripAction = createAction(
     'Trips: Create',
     props<{ payload: Trip }>()

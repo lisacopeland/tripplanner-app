@@ -11,11 +11,13 @@ import { environment } from '../environments/environment';
 import { API_URL } from '@tripplanner/common';
 import { TripsModule } from '@tripplanner/trips';
 import { EffectsModule } from '@ngrx/effects';
+import { TripDetailComponent } from './trip-detail/trip-detail.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    TripListComponent
+    TripListComponent,
+    TripDetailComponent
   ],
   imports: [
     BrowserModule,

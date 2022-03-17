@@ -1,7 +1,9 @@
 <div>
     <ng-container *ngFor="let trip of trips$ | async">
+      <a (click)="onGotoDetail(trip)">
         <div>
           {{trip.admin_title}}
         </div>
+      </a>
     </ng-container>
 </div>
