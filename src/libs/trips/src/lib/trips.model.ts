@@ -9,6 +9,9 @@ export class Trip {
   admin_title: string;
   admin_status: string;
   admin_notes: string;
+  background_pic_url: string;
+  start_date: string;
+  end_date: string;
 
   constructor(defaultValues: Partial<Trip>) {
       Object.keys(defaultValues).forEach((key) => {

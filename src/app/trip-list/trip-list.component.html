@@ -1,9 +1,19 @@
-<div>
+<div class="list-wrapper">
     <ng-container *ngFor="let trip of trips$ | async">
-      <a (click)="onGotoDetail(trip)">
-        <div>
-          {{trip.admin_title}}
-        </div>
-      </a>
+      <mat-card class="trip-card" (click)="onGotoDetail(trip)">
+        <mat-card-header>
+          <mat-card-title>
+            {{trip.admin_title}}
+          </mat-card-title>
+        </mat-card-header>
+        <img mat-card-image [src]=trip.background_pic_url />
+        <mat-card-content>
+          <p>
+            {{ trip.admin_notes }}
+          </p>
+          <p>Starting on {{trip.start_date | date: "medium"}}</p>
+          <p>Ending on {{trip.end_date | date: "medium"}}</p>
+        </mat-card-content>
+      </mat-card>
     </ng-container>
 </div>
