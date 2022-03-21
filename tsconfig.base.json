@@ -2,11 +2,14 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
-    "baseUrl": "./src",
+    "baseUrl": ".",
     "rootDir": ".",
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,
     "strict": true,
+    "types": [
+      "node"
+    ],
     "strictNullChecks": false,
     "noImplicitOverride": true,
     "noImplicitAny": false,
@@ -24,12 +27,14 @@
     "target": "es2017",
     "module": "esnext",
     "lib": [
-      "es2020",
+      "es2018",
       "dom"
     ],
     "paths": {
-      "@tripplanner/trips": ["libs/trips/src/index.ts"],
-      "@tripplanner/common": ["libs/common/src/index.ts"],      
+      "@tripstore/*": ["src/app/+state/*"],
+      "@services/*": ["src/app/services/*"],
+      "@models/*": ["src/app/models/*"],
+      "@common/*": ["src/app/common/*"],      
     }
   },
   "angularCompilerOptions": {

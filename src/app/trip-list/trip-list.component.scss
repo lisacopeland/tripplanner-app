@@ -1,6 +1,18 @@
+.wrapper {
+  margin: 20px;
+}
+
+.list-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
 .list-wrapper {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-between;
 }
 
 .trip-card {
@@ -13,6 +25,20 @@
     height: 500px;
     margin: 40px;
     cursor: pointer;
+}
+
+.card-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.create-card {
+  width: 250px;
+  margin-right: 20px;
+  display:flex;
+  flex-direction: column;
+
 }
 
 img {

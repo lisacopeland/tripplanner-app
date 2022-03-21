@@ -1,5 +1,8 @@
+import { deepCopy } from '../common/utils'
 
-import { deepCopy } from '@tripplanner/common';
+export const TRIP_STATUS_NEW = 'new';
+export const TRIP_STATUS_ARCHIVED = 'archived';
+export const TRIP_STATUS_HASDATA = 'hasdata';
 
 export class Trip {
   id: string;
@@ -12,6 +15,8 @@ export class Trip {
   background_pic_url: string;
   start_date: string;
   end_date: string;
+  participants: string[]; // Emails of participants
+  totalTripCost: number;
 
   constructor(defaultValues: Partial<Trip>) {
       Object.keys(defaultValues).forEach((key) => {
@@ -27,7 +32,8 @@ export class Trip {
 export function mapToTrip(data: any): Trip {
   return new Trip(data);
 }
-export function mapToTrips(data: unknown[]): Trip[] {
+export function mapToTrips(data: any[]): Trip[] {
+  console.log('data: ', data);
   if (data.length) {
     const allData = data.map(mapToTrip);
     return allData;

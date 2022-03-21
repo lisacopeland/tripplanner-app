@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { Trip } from '../trips.model';
+import { Trip } from '../models/trips.model';
 
 export const loadTripsAction = createAction(
     'Trips: Load All',
@@ -31,7 +31,7 @@ export const tripUpdatedAction = createAction(
 );
 export const deleteTripAction = createAction(
     'Trips: Delete',
-    props<{ id: string }>()
+    props<{ aid: string, id: string }>()
 );
 export const tripDeletedAction = createAction(
     'Trips: Deleted',

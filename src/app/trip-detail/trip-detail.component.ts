@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { Observable, filter } from 'rxjs';
-import { Trip, selectCurrentTrip } from '@tripplanner/trips';
+import { selectCurrentTrip } from '../+state/trips.reducer';
+
+import { Trip } from '../models/trips.model';
 
 @Component({
   selector: 'app-trip-detail',

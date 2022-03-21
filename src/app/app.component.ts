@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { loadTripsAction } from '@tripplanner/trips';
+import { loadTripsAction } from './+state/trips.actions';
+
 
 @Component({
   selector: 'app-root',

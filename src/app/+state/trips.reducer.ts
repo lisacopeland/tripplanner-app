@@ -4,7 +4,7 @@ import {
     createSelector,
     on,
 } from '@ngrx/store';
-import { Trip, mapToTrips, mapToTrip } from '../trips.model';
+import { Trip, mapToTrips, mapToTrip } from '../models/trips.model';
 import {
     loadTripsAction,
     setTripsAction,
