@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { Observable, filter } from 'rxjs';
 import { selectCurrentTrip } from '../+state/trips.reducer';
+import { DEFAULT_BACKGROUND } from '../common/constants';
 
 import { Trip } from '../models/trips.model';
 
@@ -15,10 +16,24 @@ export class TripDetailComponent implements OnInit {
     select(selectCurrentTrip),
     filter((trip) => !!trip)
   );
-  constructor(private store: Store) { }
+  DEFAULT_BACKGROUND = DEFAULT_BACKGROUND;
+
+  constructor(private store: Store) {}
 
   ngOnInit(): void {
   
+  }
+
+  onEdit() {
+    
+  }
+
+  onAddPerson() {
+
+  }
+
+  onAddItinerary() {
+
   }
 
 }

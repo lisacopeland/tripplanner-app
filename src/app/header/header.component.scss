@@ -1,0 +1,18 @@
+.header-class {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.icon-menu {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
+.avatar {
+  vertical-align: middle;
+  width: 50px;
+  height: 35px;
+  border-radius: 50%;
+}

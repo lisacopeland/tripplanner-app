@@ -26,7 +26,7 @@ const initialState: TripsState = {
     trips: [],
 };
 
-export const TRIPS_FEATURE_KEY = 'trips';
+export const TRIPS_FEATURE_KEY = 'tripdetails';
 
 export const tripsReducer = createReducer(
     initialState,

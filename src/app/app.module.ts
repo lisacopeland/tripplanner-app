@@ -15,6 +15,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatMenuModule } from '@angular/material/menu';
@@ -25,13 +26,19 @@ import { TripsEffects } from './+state/trips.effects';
 import { HttpClientModule } from '@angular/common/http';
 import { TripEditComponent } from './trip-edit/trip-edit.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HeaderComponent } from './header/header.component';
+import { DateTillPipe } from './common/date-till.pipe';
+import { TripDetailsEffects } from './+state/tripdetails.effects';
+import { tripDetailsReducer } from './+state/tripdetails.reducer';
 
 @NgModule({
   declarations: [
     AppComponent,
     TripListComponent,
     TripDetailComponent,
-    TripEditComponent
+    TripEditComponent,
+    HeaderComponent,
+    DateTillPipe
   ],
   imports: [
     BrowserModule,
@@ -44,14 +51,17 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MatCardModule,
     MatDatepickerModule,
     MatDialogModule,
+    MatIconModule,
     MatInputModule,
     MatFormFieldModule,
     MatMenuModule,
     MatNativeDateModule,
     MatToolbarModule,
     StoreModule.forRoot({ trips: tripsReducer}, {}),
+    StoreModule.forRoot({ tripdetails: tripDetailsReducer }, {}),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
     EffectsModule.forRoot([TripsEffects]),
+    EffectsModule.forRoot([TripDetailsEffects]),
   ],
   providers: [{ provide: API_URL, useValue: environment.apiUrl }],
   bootstrap: [AppComponent]

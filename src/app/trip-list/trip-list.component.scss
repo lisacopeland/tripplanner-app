@@ -5,14 +5,24 @@
 .list-header {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
 }
 
-.list-wrapper {
+.archive-toggle {
+  font-size: x-small;
+  color: gray;
+}
+
+.trip-list-wrapper {
   display: flex;
   flex-direction: row;
   align-items: flex-start;
   justify-content: space-between;
+}
+
+.trip-list {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
 
 .trip-card {
@@ -23,14 +33,17 @@
     max-width: 50%;
     width: 300px;
     height: 500px;
-    margin: 40px;
-    cursor: pointer;
+    margin: 20px;
+    padding: none;
 }
 
 .card-header {
   display: flex;
   flex-direction: row;
+  width: 100%;
+  margin: 0px 10px 0px 10px;
   justify-content: space-between;
+  align-items: flex-start;
 }
 
 .create-card {

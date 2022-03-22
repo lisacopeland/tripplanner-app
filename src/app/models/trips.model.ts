@@ -1,4 +1,5 @@
 import { deepCopy } from '../common/utils'
+import * as moment from 'moment';
 
 export const TRIP_STATUS_NEW = 'new';
 export const TRIP_STATUS_ARCHIVED = 'archived';
@@ -36,6 +37,9 @@ export function mapToTrips(data: any[]): Trip[] {
   console.log('data: ', data);
   if (data.length) {
     const allData = data.map(mapToTrip);
+    allData.sort((a,b) => {
+      return moment(a.start_date).isSameOrBefore(moment(b.start_date), 'day') ? -1: 1;
+    })
     return allData;
   } else {
     return [];

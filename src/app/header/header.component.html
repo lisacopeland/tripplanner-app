@@ -1,0 +1,14 @@
+<mat-toolbar class="header-class" color="primary">
+    <h1>Welcome to trip planner!</h1>
+<div class="icon-menu">
+    <img [src]=DEFAULT_AVATAR alt="Avatar" class="avatar">
+    <button mat-icon-button [matMenuTriggerFor]="menu">
+        <mat-icon>menu</mat-icon>
+    </button>
+    </div>
+</mat-toolbar>
+
+<mat-menu #menu="matMenu">
+    <button mat-menu-item>Log In</button>
+    <button mat-menu-item>About</button>
+</mat-menu>

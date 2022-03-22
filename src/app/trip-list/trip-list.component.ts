@@ -6,7 +6,8 @@ import { select, Store } from '@ngrx/store';
 import { Observable, filter } from 'rxjs';
 import { setCurrentTripAction, updateTripAction } from '../+state/trips.actions';
 import { selectAllTrips } from '../+state/trips.reducer';
-import { Trip, TRIP_STATUS_NEW } from '../models/trips.model';
+import { DEFAULT_BACKGROUND } from '../common/constants';
+import { Trip, TRIP_STATUS_ARCHIVED, TRIP_STATUS_NEW } from '../models/trips.model';
 import { TripEditComponent } from '../trip-edit/trip-edit.component';
 
 @Component({
@@ -24,6 +25,11 @@ export class TripListComponent implements OnInit {
   );
   newTripTitle = '';
   selectedTrip: Trip = null;
+  showArchived = false;
+  TRIP_STATUS_NEW = TRIP_STATUS_NEW;
+  TRIP_STATUS_ARCHIVED = TRIP_STATUS_ARCHIVED;
+
+  DEFAULT_BACKGROUND = DEFAULT_BACKGROUND;
 
   ngOnInit(): void {
     console.log('hi from lisa');
@@ -62,6 +68,10 @@ export class TripListComponent implements OnInit {
   onArchive() {
     this.selectedTrip.admin_status = 'archived';
     this.store.dispatch(updateTripAction({ id: this.selectedTrip.id, changes: this.selectedTrip }));
+  }
+
+  archiveToggle() {
+    this.showArchived = !this.showArchived;
   }
 
 }

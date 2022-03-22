@@ -1,0 +1,70 @@
+import { Injectable } from "@angular/core";
+import { Actions, createEffect, ofType } from "@ngrx/effects";
+import { mergeMap, map } from "rxjs";
+import { TripDetailsService } from "../services/trip-details.service";
+
+import { createTripDetailAction, deleteTripDetailAction, loadTripDetailsAction, setTripDetailsAction, TripDetailCreatedAction, TripDetailDeletedAction, TripDetailUpdatedAction, updateTripDetailAction } from "./TripDetails.actions";
+
+@Injectable()
+export class TripDetailsEffects {
+    concurrentRequests = 5;
+
+    constructor(
+        public service: TripDetailsService,
+        public actions$: Actions
+    ) { }
+
+    loadTripDetails$ = createEffect(() =>
+        this.actions$.pipe(
+            ofType(loadTripDetailsAction),
+            mergeMap((action) => {
+                return this.service.query(action.search.account_id, action.search.tripId, action.search).pipe(
+                    map((response) => {
+                        console.log('response from query : ', response);
+                        return setTripDetailsAction({ payload: response });
+                    })
+                );
+            }, this.concurrentRequests)
+        )
+    );
+
+    createTripDetail$ = createEffect(() =>
+        this.actions$.pipe(
+            ofType(createTripDetailAction),
+            mergeMap((action) => {
+                return this.service.create(action.payload.account_id, action.payload.tripId, action.payload).pipe(
+                    map((response) => {
+                        console.log('response from query : ', response);
+                        return TripDetailCreatedAction({ payload: { TripDetail: response }});
+                    })
+                );
+            }, this.concurrentRequests)
+        )
+    );
+    updateTripDetail$ = createEffect(() =>
+        this.actions$.pipe(
+            ofType(updateTripDetailAction),
+            mergeMap((action) => {
+                return this.service.update(action.changes.account_id, action.changes.tripId, action.changes).pipe(
+                    map((response) => {
+                        console.log('response from query : ', response);
+                        return TripDetailUpdatedAction({ payload: { changes: response } });
+                    })
+                );
+            }, this.concurrentRequests)
+        )
+    );
+    deleteTripDetail$ = createEffect(() =>
+        this.actions$.pipe(
+            ofType(deleteTripDetailAction),
+            mergeMap((action) => {
+                return this.service.delete(action.aid, action.tripId, action.id).pipe(
+                    map((response) => {
+                        console.log('response from query : ', response);
+                        return TripDetailDeletedAction({ payload: { id: action.id } });
+                    })
+                );
+            }, this.concurrentRequests)
+        )
+    );                 
+}

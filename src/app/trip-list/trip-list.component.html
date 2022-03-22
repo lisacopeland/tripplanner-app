@@ -1,27 +1,37 @@
 <div class="wrapper">
   <div class="list-header">
     <h1>Trip List</h1>
+    <button mat-button (click)="archiveToggle()"><span class="archive-toggle">Show archived</span></button>
   </div>
-  <div class="list-wrapper">
+  <div class="trip-list-wrapper">
     <ng-container *ngIf="trips$ | async as trips; else noTrips">
-      <ng-container *ngFor="let trip of trips">
-        <mat-card class="trip-card">
-          <mat-card-header class="card-header">
-            <mat-card-title>
-              {{trip.admin_title}}
-            </mat-card-title>
-            <button mat-button [matMenuTriggerFor]="menu" (menuOpened)="menuOpened(trip)">Menu</button>
-          </mat-card-header>
-          <img mat-card-image [src]=trip.background_pic_url />
-          <mat-card-content>
-            <p>
-              {{ trip.admin_notes }}
-            </p>
-            <p>Starting on {{trip.start_date | date: "medium"}}</p>
-            <p>Ending on {{trip.end_date | date: "medium"}}</p>
-          </mat-card-content>
-        </mat-card>
-      </ng-container>
+      <div class="trip-list">
+        <ng-container *ngFor="let trip of trips">
+          <mat-card *ngIf="(trip.admin_status !== TRIP_STATUS_ARCHIVED) || (showArchived)" class="trip-card">
+            <div class="card-header">
+              <h2>
+                {{trip.admin_title}}
+              </h2>
+              <button mat-icon-button [matMenuTriggerFor]="menu" (menuOpened)="menuOpened(trip)">
+                <mat-icon>menu</mat-icon>
+              </button>
+            </div>
+            <ng-container *ngIf="trip.background_pic_url && trip.background_pic_url !== ''; else defaultPic">
+              <img mat-card-image [src]=trip.background_pic_url />
+            </ng-container>
+            <ng-template #defaultPic>
+              <img mat-card-image [src]=DEFAULT_BACKGROUND />
+            </ng-template>
+            <mat-card-content>
+              <p>
+                {{ trip.admin_notes }}
+              </p>
+              <p>{{trip.start_date | timetill }}</p>
+              <p>On {{trip.start_date | date: "longDate"}}</p>
+            </mat-card-content>
+          </mat-card>
+        </ng-container>
+      </div>
     </ng-container>
     <ng-template #noTrips>
       <p>You have no trips, use Create Trips to get started</p>
