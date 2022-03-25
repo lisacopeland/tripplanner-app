@@ -35,7 +35,7 @@ export function mapToTrip(data: any): Trip {
 }
 export function mapToTrips(data: any[]): Trip[] {
   console.log('data: ', data);
-  if (data.length) {
+  if ((data !== undefined) && (data.length)) {
     const allData = data.map(mapToTrip);
     allData.sort((a,b) => {
       return moment(a.start_date).isSameOrBefore(moment(b.start_date), 'day') ? -1: 1;

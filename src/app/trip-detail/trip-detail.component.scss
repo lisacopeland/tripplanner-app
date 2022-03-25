@@ -1,22 +1,47 @@
-.trip-card {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    max-width: 50%;
-    width: 300px;
-    height: 500px;
-    margin: 20px;
-    padding: none;
+/* .example-container {
+  width: 98%;
+} */
+
+mat-drawer-content {
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
-.card-header {
+.content-wrapper {
+  flex: 1;  
+  height: 100%;
+  border: 1px solid blue;
+}
+
+.material-icons.gray { color: #999999; }
+
+.side-menu {
   display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+}
+
+.page-layout {
+  display: flex;
+  max-width: 100%;
+  border: 1px solid red;
   flex-direction: row;
-  width: 100%;
-  margin: 0px 10px 0px 10px;
-  justify-content: space-between;
-  align-items: flex-start;
+}
+
+.list-column {
+  flex: 1 1 65%;
+  border: 1px solid yellow;
+}
+
+.info-column {
+  flex: 1 1 32%;
+  border: 1px solid green;
+}
+
+.picture-frame {
+  border: 1px solid blue;
 }
 
 img {

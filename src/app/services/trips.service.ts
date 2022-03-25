@@ -17,24 +17,24 @@ export class TripService {
 
   query(aid:string, search: Partial<Trip>): Observable<Trip[]> {
     const searchObject: any = search;
-    const url = `${this.apiUrl}/trips/${aid}`;
+    const url = `${this.apiUrl}/${aid}/trips`;
     console.log('going to url ', url, 'search: ', search)
     const params = new HttpParams({ fromObject: searchObject });
     return this.http.get<Trip[]>(url, { params });
   }
 
   create(trip: Trip): Observable<Trip> {
-    const url = `${this.apiUrl}/trips/${trip.account_id}`;
+    const url = `${this.apiUrl}/${trip.account_id}/trips`;
     return this.http.post<Trip>(url, trip);
   }
 
   update(trip: Trip): Observable<Trip> {
-    const url = `${this.apiUrl}/trips/${trip.account_id}/${trip.id}`;
+    const url = `${this.apiUrl}/${trip.account_id}/trips/${trip.id}`;
     return this.http.put<Trip>(url, trip);
   }
 
   delete(aid: string, id: string): Observable<Trip> {
-    const url = `${this.apiUrl}/trips/${aid}/${id}`;
+    const url = `${this.apiUrl}/${aid}/trips/${id}`;
     return this.http.delete<Trip>(url);
   }
 }

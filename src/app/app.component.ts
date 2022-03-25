@@ -24,9 +24,11 @@ export class AppComponent implements OnInit, OnDestroy {
       filter((bool) => !!bool)
       )
       .subscribe((trip) => {
-        this.store.dispatch(
-          loadTripDetailsAction({ search: { tripId: trip.id }})
-        )
+        if (trip) {
+          this.store.dispatch(
+            loadTripDetailsAction({ search: { account_id: trip.account_id, tripId: trip.id }})
+          )
+        }
       })
     );
     this.router.navigate(['']);

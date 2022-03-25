@@ -26,7 +26,7 @@ const initialState: TripDetailsState = {
     TripDetails: [],
 };
 
-export const TripDetailS_FEATURE_KEY = 'TripDetails';
+export const TRIPDETAILS_FEATURE_KEY = 'tripdetails';
 
 export const tripDetailsReducer = createReducer(
     initialState,
@@ -77,7 +77,7 @@ export const tripDetailsReducer = createReducer(
     })
 );
 
-export const getTripDetailsState = createFeatureSelector<TripDetailsState>(TripDetailS_FEATURE_KEY);
+export const getTripDetailsState = createFeatureSelector<TripDetailsState>(TRIPDETAILS_FEATURE_KEY);
 
 export const selectAll = createSelector(
     getTripDetailsState,

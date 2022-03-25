@@ -20,6 +20,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatNativeDateModule } from '@angular/material/core';
+import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { tripsReducer } from './+state/trips.reducer';
 import { TripsEffects } from './+state/trips.effects';
@@ -30,6 +31,7 @@ import { HeaderComponent } from './header/header.component';
 import { DateTillPipe } from './common/date-till.pipe';
 import { TripDetailsEffects } from './+state/tripdetails.effects';
 import { tripDetailsReducer } from './+state/tripdetails.reducer';
+import { appReducers } from './+state/app.reducer';
 
 @NgModule({
   declarations: [
@@ -56,12 +58,18 @@ import { tripDetailsReducer } from './+state/tripdetails.reducer';
     MatFormFieldModule,
     MatMenuModule,
     MatNativeDateModule,
+    MatSidenavModule,
     MatToolbarModule,
-    StoreModule.forRoot({ trips: tripsReducer}, {}),
-    StoreModule.forRoot({ tripdetails: tripDetailsReducer }, {}),
+    StoreModule.forRoot(appReducers, {
+      metaReducers: !environment.production ? [] : [],
+      runtimeChecks: {
+        strictStateImmutability: true,
+        strictActionImmutability: true,
+      },
+    }),    
+    StoreModule.forRoot({ trips: tripsReducer, tripdetails: tripDetailsReducer}),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
-    EffectsModule.forRoot([TripsEffects]),
-    EffectsModule.forRoot([TripDetailsEffects]),
+    EffectsModule.forRoot([TripsEffects, TripDetailsEffects]),
   ],
   providers: [{ provide: API_URL, useValue: environment.apiUrl }],
   bootstrap: [AppComponent]

@@ -17,6 +17,7 @@ export class TripDetailComponent implements OnInit {
     filter((trip) => !!trip)
   );
   DEFAULT_BACKGROUND = DEFAULT_BACKGROUND;
+  menuOpened = false;
 
   constructor(private store: Store) {}
 
@@ -26,6 +27,11 @@ export class TripDetailComponent implements OnInit {
 
   onEdit() {
     
+  }
+
+  onMenuToggle(menuOpened: boolean) {
+    this.menuOpened = menuOpened;
+    console.log('menu opened is ', this.menuOpened);
   }
 
   onAddPerson() {
