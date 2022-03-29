@@ -17,7 +17,7 @@ export const createTripDetailAction = createAction(
     'TripDetails: Create',
     props<{ payload: TripDetail }>()
 );
-export const TripDetailCreatedAction = createAction(
+export const tripDetailCreatedAction = createAction(
     'TripDetails: Created',
     props<{ payload: { TripDetail: TripDetail } }>()
 );
@@ -25,7 +25,7 @@ export const updateTripDetailAction = createAction(
     'TripDetails: Update',
     props<{ id: string; changes: TripDetail }>()
 );
-export const TripDetailUpdatedAction = createAction(
+export const tripDetailUpdatedAction = createAction(
     'TripDetails: Updated',
     props<{ payload: { changes: Partial<TripDetail> } }>()
 );
@@ -33,7 +33,7 @@ export const deleteTripDetailAction = createAction(
     'TripDetails: Delete',
     props<{ aid: string, tripId: string, id: string }>()
 );
-export const TripDetailDeletedAction = createAction(
+export const tripDetailDeletedAction = createAction(
     'TripDetails: Deleted',
     props<{ payload: { id: string } }>()
 );

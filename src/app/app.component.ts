@@ -2,10 +2,10 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { select, Store } from '@ngrx/store';
 import { filter } from 'rxjs';
-import { loadTripDetailsAction } from './+state/TripDetails.actions';
-import { loadTripsAction } from './+state/trips.actions';
-import { selectCurrentTrip } from './+state/trips.reducer';
-
+import { loadTripsAction } from '@tripstore/trips.actions';
+import { selectCurrentTrip } from '@tripstore/trips.reducer';
+import { loadPeopleAction } from '@tripstore/people.actions';
+import { loadTripDetailsAction } from '@tripstore/tripdetails.actions';
 
 @Component({
   selector: 'app-root',
@@ -14,7 +14,6 @@ import { selectCurrentTrip } from './+state/trips.reducer';
 })
 export class AppComponent implements OnInit, OnDestroy {
   subs = [];
-
   constructor(private store: Store, private router: Router) {}
 
   ngOnInit() {
@@ -33,6 +32,7 @@ export class AppComponent implements OnInit, OnDestroy {
     );
     this.router.navigate(['']);
     this.store.dispatch(loadTripsAction({ search: {account_id: 'lisa'} }));
+    this.store.dispatch(loadPeopleAction({ search: { account_id: 'lisa' } }));
   }
 
   ngOnDestroy() {

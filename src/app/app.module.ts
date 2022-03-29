@@ -22,16 +22,19 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { tripsReducer } from './+state/trips.reducer';
-import { TripsEffects } from './+state/trips.effects';
+import { tripsReducer } from '@tripstore/trips.reducer';
+import { TripsEffects } from '@tripstore/trips.effects';
 import { HttpClientModule } from '@angular/common/http';
 import { TripEditComponent } from './trip-edit/trip-edit.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HeaderComponent } from './header/header.component';
 import { DateTillPipe } from './common/date-till.pipe';
-import { TripDetailsEffects } from './+state/tripdetails.effects';
-import { tripDetailsReducer } from './+state/tripdetails.reducer';
-import { appReducers } from './+state/app.reducer';
+import { TripDetailsEffects } from '@tripstore/tripdetails.effects';
+import { tripDetailsReducer } from '@tripstore/tripdetails.reducer';
+import { appReducers } from '@tripstore/app.reducer';
+import { peopleReducer } from '@tripstore/people.reducer';
+import { PeopleEffects } from '@tripstore/people.effects';
+import { AvatarComponent } from './avatar/avatar.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +43,8 @@ import { appReducers } from './+state/app.reducer';
     TripDetailComponent,
     TripEditComponent,
     HeaderComponent,
-    DateTillPipe
+    DateTillPipe,
+    AvatarComponent
   ],
   imports: [
     BrowserModule,
@@ -67,9 +71,9 @@ import { appReducers } from './+state/app.reducer';
         strictActionImmutability: true,
       },
     }),    
-    StoreModule.forRoot({ trips: tripsReducer, tripdetails: tripDetailsReducer}),
+    StoreModule.forRoot({ trips: tripsReducer, tripdetails: tripDetailsReducer, people: peopleReducer }),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
-    EffectsModule.forRoot([TripsEffects, TripDetailsEffects]),
+    EffectsModule.forRoot([TripsEffects, TripDetailsEffects, PeopleEffects]),
   ],
   providers: [{ provide: API_URL, useValue: environment.apiUrl }],
   bootstrap: [AppComponent]

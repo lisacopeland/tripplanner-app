@@ -1,5 +1,6 @@
 import { deepCopy } from '../common/utils'
 import * as moment from 'moment';
+import { Person } from './people.model';
 
 export const TRIP_STATUS_NEW = 'new';
 export const TRIP_STATUS_ARCHIVED = 'archived';

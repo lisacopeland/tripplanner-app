@@ -1,12 +1,18 @@
-<mat-toolbar class="header-class" color="primary">
-    <h1>Welcome to trip planner!</h1>
-<div class="icon-menu">
-    <img [src]=DEFAULT_AVATAR alt="Avatar" class="avatar">
-    <button mat-icon-button [matMenuTriggerFor]="menu">
-        <mat-icon>menu</mat-icon>
-    </button>
+<div class="header-class">
+    <div class="left-side">
+        <h2 class="app-title">Trip Planner</h2>
     </div>
-</mat-toolbar>
+
+    <div class="right-side">
+        <button mat-icon-button>
+            <mat-icon class="material-icons brown">chat</mat-icon>
+        </button>
+        <button mat-icon-button>
+            <mat-icon class="material-icons brown">notifications</mat-icon>
+        </button>
+        <img [src]=DEFAULT_AVATAR alt="Avatar" class="avatar">
+    </div>
+</div>
 
 <mat-menu #menu="matMenu">
     <button mat-menu-item>Log In</button>

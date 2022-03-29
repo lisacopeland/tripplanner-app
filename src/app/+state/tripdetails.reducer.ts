@@ -8,11 +8,11 @@ import { TripDetail, mapToTripDetails, mapToTripDetail } from '../models/trip-de
 import {
     loadTripDetailsAction,
     setTripDetailsAction,
-    TripDetailCreatedAction,
-    TripDetailUpdatedAction,
-    TripDetailDeletedAction,
+    tripDetailCreatedAction,
+    tripDetailUpdatedAction,
+    tripDetailDeletedAction,
     setCurrentTripDetailAction,
-} from './TripDetails.actions';
+} from '@tripstore/tripdetails.actions';
 
 export interface TripDetailsState {
     TripDetails: TripDetail[];
@@ -38,7 +38,7 @@ export const tripDetailsReducer = createReducer(
         const newState = { ...state, TripDetails: action.payload };
         return newState;
     }),
-    on(TripDetailCreatedAction, (state, action) => {
+    on(tripDetailCreatedAction, (state, action) => {
         const TripDetails = [...state.TripDetails];
         TripDetails.push(action.payload.TripDetail);
         const newState = { ...state, TripDetails: TripDetails };
@@ -57,7 +57,7 @@ export const tripDetailsReducer = createReducer(
            return newState;
         }
     }),    
-    on(TripDetailUpdatedAction, (state, action) => {
+    on(tripDetailUpdatedAction, (state, action) => {
         const TripDetails = [...state.TripDetails];
         const idx = TripDetails.findIndex(x => x.id === action.payload.changes.id);
         const updatedTripDetail = new TripDetail({
@@ -68,7 +68,7 @@ export const tripDetailsReducer = createReducer(
         const newState = { ...state, TripDetails: TripDetails };
         return newState;
     }),
-    on(TripDetailDeletedAction, (state, action) => {
+    on(tripDetailDeletedAction, (state, action) => {
         const TripDetails = [...state.TripDetails];
         const idx = TripDetails.findIndex(x => x.id === action.payload.id);
         TripDetails.splice(idx, 1)

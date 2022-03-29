@@ -4,7 +4,9 @@ import {
     createSelector,
     on,
 } from '@ngrx/store';
+import { Person } from '../models/people.model';
 import { Trip, mapToTrips, mapToTrip } from '../models/trips.model';
+import { selectAllPeople, selectPeopleLoaded } from './people.reducer';
 import {
     loadTripsAction,
     setTripsAction,
@@ -14,16 +16,23 @@ import {
     setCurrentTripAction,
 } from './trips.actions';
 
+export interface TripWithParticipants {
+    trip: Trip;
+    people: Person[];
+}
+
 export interface TripsState {
     trips: Trip[];
     current: string;
     currentTrip: Trip;
+    tripsLoaded: boolean;
 }
 
 const initialState: TripsState = {
     current: '',
     currentTrip: null,
     trips: [],
+    tripsLoaded: false
 };
 
 export const TRIPS_FEATURE_KEY = 'trips';
@@ -31,11 +40,12 @@ export const TRIPS_FEATURE_KEY = 'trips';
 export const tripsReducer = createReducer(
     initialState,
     on(loadTripsAction, (state, action) => {
-        const newState = { ...state, trips: [], currentTrip: null, current: ''};
+        const newState = initialState;
         return newState;
     }),
     on(setTripsAction, (state, action) => {
-        const newState = { ...state, trips: action.payload };
+        console.log('set Trips action fired!');
+        const newState = { ...state, trips: action.payload, tripsLoaded: true };
         return newState;
     }),
     on(tripCreatedAction, (state, action) => {
@@ -84,9 +94,45 @@ export const selectAll = createSelector(
     (state: TripsState) => state
 );
 
-export const selectAllTrips = createSelector(selectAll, (state) =>
-    mapToTrips(state.trips)
-);
+export const selectAllTrips = createSelector(selectAll, (state) => {
+    console.log('selectAllTrips!')
+    return mapToTrips(state.trips)
+});
+
+export const selectTripsLoaded = createSelector(selectAll, (state) => {
+    console.log('selectTripsloaded returning ', state.tripsLoaded);
+    return state.tripsLoaded
+});
+
+export const selectTripsAndPeopleLoaded = createSelector(
+    selectTripsLoaded,
+    selectPeopleLoaded,
+    (tripsLoaded, peopleLoaded) =>  {
+        console.log('all loaded :', tripsLoaded, ' ', peopleLoaded);
+      return [tripsLoaded, peopleLoaded].every(loaded => loaded === true)
+    });
+
+export const selectTripsWithParticipants = createSelector(
+    selectAllTrips,
+    selectAllPeople,
+    (trips, people) => {
+        console.log('selectTripsWithPeople firing!');
+      const tripsWithPeople: TripWithParticipants[] = trips.map(trip => {
+          let participants = [];
+          if (trip.participants) {
+              participants = trip.participants.map(part => {
+                  return people.find(x => x.email === part);
+              });
+          }
+          return {
+              trip: mapToTrip(trip),
+              people: participants
+          }
+          
+      });
+      console.log('selectTripswithpeople returning : ', tripsWithPeople);
+      return tripsWithPeople;
+    })
 
 export const selectCurrentTrip = createSelector(selectAll, (state) =>
     state.currentTrip

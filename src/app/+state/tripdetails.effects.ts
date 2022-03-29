@@ -3,7 +3,9 @@ import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { mergeMap, map } from "rxjs";
 import { TripDetailsService } from "../services/trip-details.service";
 
-import { createTripDetailAction, deleteTripDetailAction, loadTripDetailsAction, setTripDetailsAction, TripDetailCreatedAction, TripDetailDeletedAction, TripDetailUpdatedAction, updateTripDetailAction } from "./TripDetails.actions";
+import { createTripDetailAction, deleteTripDetailAction, loadTripDetailsAction, 
+         setTripDetailsAction, tripDetailCreatedAction, tripDetailDeletedAction, 
+         tripDetailUpdatedAction, updateTripDetailAction } from "@tripstore/tripdetails.actions";
 
 @Injectable()
 export class TripDetailsEffects {
@@ -35,7 +37,7 @@ export class TripDetailsEffects {
                 return this.service.create(action.payload.account_id, action.payload.tripId, action.payload).pipe(
                     map((response) => {
                         console.log('response from query : ', response);
-                        return TripDetailCreatedAction({ payload: { TripDetail: response }});
+                        return tripDetailCreatedAction({ payload: { TripDetail: response }});
                     })
                 );
             }, this.concurrentRequests)
@@ -48,7 +50,7 @@ export class TripDetailsEffects {
                 return this.service.update(action.changes.account_id, action.changes.tripId, action.changes).pipe(
                     map((response) => {
                         console.log('response from query : ', response);
-                        return TripDetailUpdatedAction({ payload: { changes: response } });
+                        return tripDetailUpdatedAction({ payload: { changes: response } });
                     })
                 );
             }, this.concurrentRequests)
@@ -61,7 +63,7 @@ export class TripDetailsEffects {
                 return this.service.delete(action.aid, action.tripId, action.id).pipe(
                     map((response) => {
                         console.log('response from query : ', response);
-                        return TripDetailDeletedAction({ payload: { id: action.id } });
+                        return tripDetailDeletedAction({ payload: { id: action.id } });
                     })
                 );
             }, this.concurrentRequests)

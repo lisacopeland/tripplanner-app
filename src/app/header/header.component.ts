@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output } from '@angular/core';
+import { EventEmitter } from '@angular/core';
 import { DEFAULT_AVATAR } from '../common/constants';
 
 @Component({
@@ -7,7 +8,9 @@ import { DEFAULT_AVATAR } from '../common/constants';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-  
+  @Input() menuOpen: boolean;
+  @Output() menuToggle: EventEmitter<boolean> = new EventEmitter<boolean>();
+
   DEFAULT_AVATAR = DEFAULT_AVATAR;
   constructor() { }
 
