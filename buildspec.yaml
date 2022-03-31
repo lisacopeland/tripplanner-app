@@ -2,7 +2,7 @@
 version: 0.2
 env:
   variables:
-    APP_NAME: "tripplanner"
+    APP_NAME: "tripplanner-app"
 phases:
   install:
     runtime-versions:
