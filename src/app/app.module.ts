@@ -35,6 +35,10 @@ import { appReducers } from '@tripstore/app.reducer';
 import { peopleReducer } from '@tripstore/people.reducer';
 import { PeopleEffects } from '@tripstore/people.effects';
 import { AvatarComponent } from './avatar/avatar.component';
+import { SignUpComponent } from './sign-up/sign-up.component';
+import { SignInComponent } from './sign-in/sign-in.component';
+import { authReducer } from '@tripstore/auth.reducer';
+import { AuthEffects } from '@tripstore/auth.effects';
 
 @NgModule({
   declarations: [
@@ -44,7 +48,9 @@ import { AvatarComponent } from './avatar/avatar.component';
     TripEditComponent,
     HeaderComponent,
     DateTillPipe,
-    AvatarComponent
+    AvatarComponent,
+    SignUpComponent,
+    SignInComponent
   ],
   imports: [
     BrowserModule,
@@ -71,9 +77,9 @@ import { AvatarComponent } from './avatar/avatar.component';
         strictActionImmutability: true,
       },
     }),    
-    StoreModule.forRoot({ trips: tripsReducer, tripdetails: tripDetailsReducer, people: peopleReducer }),
+    StoreModule.forRoot({ auth: authReducer, trips: tripsReducer, tripdetails: tripDetailsReducer, people: peopleReducer }),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
-    EffectsModule.forRoot([TripsEffects, TripDetailsEffects, PeopleEffects]),
+    EffectsModule.forRoot([AuthEffects, TripsEffects, TripDetailsEffects, PeopleEffects]),
   ],
   providers: [{ provide: API_URL, useValue: environment.apiUrl }],
   bootstrap: [AppComponent]

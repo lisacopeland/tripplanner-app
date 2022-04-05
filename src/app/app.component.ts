@@ -6,6 +6,7 @@ import { loadTripsAction } from '@tripstore/trips.actions';
 import { selectCurrentTrip } from '@tripstore/trips.reducer';
 import { loadPeopleAction } from '@tripstore/people.actions';
 import { loadTripDetailsAction } from '@tripstore/tripdetails.actions';
+import { selectUserLoggedIn } from '@tripstore/auth.reducer';
 
 @Component({
   selector: 'app-root',
@@ -30,7 +31,14 @@ export class AppComponent implements OnInit, OnDestroy {
         }
       })
     );
-    this.router.navigate(['']);
+
+    this.store.select(selectUserLoggedIn).subscribe(loggedIn => {
+      if (loggedIn) {
+        this.router.navigate(['']);
+      } else {
+        this.router.navigate(['/signin']);
+      }
+    })    
     this.store.dispatch(loadTripsAction({ search: {account_id: 'lisa'} }));
     this.store.dispatch(loadPeopleAction({ search: { account_id: 'lisa' } }));
   }
