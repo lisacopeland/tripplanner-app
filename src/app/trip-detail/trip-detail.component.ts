@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { Observable, filter } from 'rxjs';
-import { selectCurrentTrip } from '@tripstore/trips.reducer';
-import { DEFAULT_BACKGROUND } from '../common/constants';
-
-import { Trip } from '../models/trips.model';
+import { Trip, selectCurrentTrip } from '@tripplanner/trips';
+import { DEFAULT_BACKGROUND } from '@tripplanner/common';
 
 @Component({
   selector: 'app-trip-detail',

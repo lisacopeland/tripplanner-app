@@ -2,11 +2,9 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { select, Store } from '@ngrx/store';
 import { filter } from 'rxjs';
-import { loadTripsAction } from '@tripstore/trips.actions';
-import { selectCurrentTrip } from '@tripstore/trips.reducer';
-import { loadPeopleAction } from '@tripstore/people.actions';
-import { loadTripDetailsAction } from '@tripstore/tripdetails.actions';
-import { selectUserLoggedIn } from '@tripstore/auth.reducer';
+import { loadTripsAction, loadTripDetailsAction, selectCurrentTrip } from '@tripplanner/trips';
+import { loadPeopleAction } from '@tripplanner/people';
+import { selectUserLoggedIn } from '@tripplanner/auth';
 
 @Component({
   selector: 'app-root',

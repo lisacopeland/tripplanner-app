@@ -1,3 +1,47 @@
+/* To learn more about this file see: https://angular.io/config/tsconfig. */
 {
-  "extends": "./tsconfig.base.json"
+  "compileOnSave": false,
+  "compilerOptions": {
+    "baseUrl": ".",
+    "rootDir": ".",
+    "outDir": "./dist/out-tsc",
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "types": [
+      "node"
+    ],
+    "strictNullChecks": false,
+    "noImplicitOverride": true,
+    "noImplicitAny": false,
+    "noPropertyAccessFromIndexSignature": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "sourceMap": true,
+    "declaration": false,
+    "downlevelIteration": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "strictPropertyInitialization": false,
+    "moduleResolution": "node",
+    "importHelpers": true,
+    "target": "es2017",
+    "module": "esnext",
+    "lib": [
+      "es2018",
+      "dom"
+    ],
+    "paths": {
+      "@tripplanner/auth": ["src/libs/auth/src/index.ts"],            
+      "@tripplanner/common": ["src/libs/common/src/index.ts"],      
+      "@tripplanner/shared": ["src/libs/shared/src/index.ts"],
+      "@tripplanner/trips": ["src/libs/trips/src/index.ts"],
+      "@tripplanner/people": ["src/libs/people/src/index.ts"],
+    }
+  },
+  "angularCompilerOptions": {
+    "enableI18nLegacyMessageIdFormat": false,
+    "strictInjectionParameters": true,
+    "strictInputAccessModifiers": true,
+    "strictTemplates": true
+  }
 }

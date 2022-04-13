@@ -4,11 +4,11 @@ import { Router } from '@angular/router';
 import { select, Store } from '@ngrx/store';
 
 import { Observable, filter, combineLatest, map } from 'rxjs';
-import { setCurrentTripAction, updateTripAction } from '@tripstore/trips.actions';
-import { selectTripsAndPeopleLoaded, selectTripsWithParticipants, TripWithParticipants } from '@tripstore/trips.reducer';
-import { DEFAULT_BACKGROUND } from '../common/constants';
-import { Trip, TRIP_STATUS_ARCHIVED, TRIP_STATUS_NEW } from '../models/trips.model';
-import { TripEditComponent } from '../trip-edit/trip-edit.component';
+import { setCurrentTripAction, updateTripAction } from '@tripplanner/trips';
+import { selectTripsAndPeopleLoaded, selectTripsWithParticipants, TripWithParticipants } from '@tripplanner/trips';
+import { DEFAULT_BACKGROUND } from '@tripplanner/common';
+import { Trip, TRIP_STATUS_ARCHIVED, TRIP_STATUS_NEW } from '@tripplanner/trips';
+import { TripEditComponent } from 'src/libs/trips/src/lib/trip-edit/trip-edit.component';
 
 @Component({
   selector: 'app-trip-list',

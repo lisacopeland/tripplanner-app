@@ -31,8 +31,8 @@
       "dom"
     ],
     "paths": {
-      "@tripstore/*": ["src/app/+state/*"],
-      "@services/*": ["src/app/services/*"],
+      "@tripplanner/trips": ["libs/trips/src/index.ts"],
+      "@tripplanner/people": ["libs/people/src/index.ts"],
       "@models/*": ["src/app/models/*"],
       "@common/*": ["src/app/common/*"],      
     }
